@@ -1,5 +1,6 @@
 package com.example.android.chatly;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,7 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.example.android.chatly.views.fragments.ChatListFragment;
+import com.example.android.chatly.views.fragments.ContactListFragment;
+
 
 public class profileActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
@@ -35,6 +39,11 @@ public class profileActivity extends AppCompatActivity {
             }
         });
          **/
+
+        /*StickersManager.initialize(Constants.STICKER_API_KEY, this.getApplicationContext());
+        StickersManager.setUserID(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        */
+
     }
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -56,10 +65,10 @@ public class profileActivity extends AppCompatActivity {
                 fragmentClass = profile_edit.class;
                 break;
             case R.id.second_fragment:
-                fragmentClass = profile_edit.class;
+                fragmentClass = ChatListFragment.class; //change to the chosen class
                 break;
             case R.id.third_fragment:
-                fragmentClass = profile_edit.class;
+                fragmentClass = ContactListFragment.class;
                 break;
             default:
                 fragmentClass = profile_edit.class;

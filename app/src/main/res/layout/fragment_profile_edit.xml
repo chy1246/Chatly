@@ -11,7 +11,8 @@ android:background="@drawable/profile">
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
-    <ImageView android:src = "@drawable/wu"
+    <ImageView
+        android:id ="@+id/edit_portrait"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_marginBottom="24dp"
@@ -23,11 +24,11 @@ android:background="@drawable/profile">
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:textColorHint="#00ffff">
-        <EditText android:id="@+id/profile_email"
+        <EditText android:id="@+id/profile_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            android:inputType="text"
+            android:hint="UserName"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

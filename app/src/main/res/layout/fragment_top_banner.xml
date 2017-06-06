@@ -1,0 +1,27 @@
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="60dp"
+android:background="#20a9df"
+tools:context="com.example.android.chatly.views.fragments.TopBannerFragment"
+tools:layout_editor_absoluteY="0dp"
+tools:layout_editor_absoluteX="0dp">
+
+<!-- TODO: Update blank fragment layout -->
+
+<TextView
+    android:id="@+id/topBannerTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Chatly"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    android:textColor="#ffffff"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
+

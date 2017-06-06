@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon = "http://schemas.android.com/apk/res-auto"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<ImageView
+    android:id="@+id/chatListUserImageView"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:adjustViewBounds="false"
+    android:visibility="visible"
+    app:srcCompat="@mipmap/ic_launcher" />
+
+<hani.momanii.supernova_emoji_library.Helper.EmojiconTextView
+    android:id="@+id/chatListNameText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="10dp"
+    android:layout_toEndOf="@+id/chatListUserImageView"
+    android:layout_toRightOf="@+id/chatListUserImageView"
+    android:text="TextView"
+    emojicon:emojiconSize="28sp"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    android:visibility="visible" />
+
+<hani.momanii.supernova_emoji_library.Helper.EmojiconTextView
+    android:id="@+id/latestMessageText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="TextView"
+    emojicon:emojiconSize="20sp"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    android:visibility="visible"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_below="@+id/chatListNameText"
+    android:layout_alignLeft="@+id/chatListNameText"
+    android:layout_alignStart="@+id/chatListNameText" />
+</RelativeLayout>

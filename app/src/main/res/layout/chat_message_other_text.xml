@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:weightSum="1">
+
+
+    <hani.momanii.supernova_emoji_library.Helper.EmojiconTextView
+        android:id="@+id/chatDetailMessageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.35"
+        android:background="@android:color/white"
+        android:maxWidth="180dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        emojicon:emojiconSize="28sp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintLeft_toRightOf="@+id/chatDetailPortraitImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chattextself" />
+
+    <ImageView
+        android:id="@+id/chatDetailPortraitImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_weight="0.68"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
+
+</android.support.constraint.ConstraintLayout>

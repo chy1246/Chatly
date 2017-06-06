@@ -1,0 +1,50 @@
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/chatListFragmentConstraintLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.android.chatly.views.fragments.ChatListFragment">
+
+
+<fragment
+    android:id="@+id/topBannerFragment"
+    android:name="com.example.android.chatly.views.fragments.TopBannerFragment"
+    android:layout_width="0dp"
+    android:layout_height="60dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:layout="@layout/fragment_top_banner"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<FrameLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@+id/topBannerFragment"
+    app:layout_constraintBottom_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:layout_editor_absoluteX="8dp">
+
+
+</FrameLayout>
+
+    <ListView
+        android:id="@+id/ChatListView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:visibility="visible"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/topBannerFragment" />
+
+</android.support.constraint.ConstraintLayout>
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/extra_func_menu_gallery"
+        android:icon="@drawable/orca_attach_photo_normal"
+        android:title="Choose from Gallery" />
+    <item
+        android:id="@+id/extra_func_menu_camera"
+        android:icon="@drawable/orca_attach_camera_normal"
+        android:title="Take Photo" />
+    <item
+        android:id="@+id/extra_func_menu_video"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Take Video" />
+</menu>
