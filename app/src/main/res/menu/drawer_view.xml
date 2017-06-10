@@ -7,8 +7,14 @@
     <item android:id= "@+id/second_fragment"
           android:title="Chat"
           android:icon="@mipmap/ic_launcher"/>
-    <item android:title="Logout"
+    <item android:title="Search"
           android:id="@+id/third_fragment"
           android:icon="@mipmap/ic_launcher"/>
+    <item android:title="Notification"
+        android:id="@+id/fourth_fragment"
+        android:icon="@mipmap/ic_launcher"/>
+    <item android:title="Log out"
+        android:id="@+id/fifth_fragment"
+        android:icon="@mipmap/ic_launcher"/>
 </group>
 </menu>

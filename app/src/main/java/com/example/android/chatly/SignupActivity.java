@@ -190,6 +190,7 @@ public class SignupActivity extends AppCompatActivity {
         String userId = firebaseUser.getUid();
         mDatabase.child("users").child(userId).setValue(newUser);
         uploadPicture(firebaseUser);
+        mDatabase.child("nameIDmap").child(userName).setValue(userId);
     }
 
     @Override

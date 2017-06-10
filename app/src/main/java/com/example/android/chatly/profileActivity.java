@@ -68,7 +68,10 @@ public class profileActivity extends AppCompatActivity {
                 fragmentClass = ChatListFragment.class; //change to the chosen class
                 break;
             case R.id.third_fragment:
-                fragmentClass = ContactListFragment.class;
+                fragmentClass = Search_friend.class;
+                break;
+            case R.id.fourth_fragment:
+                fragmentClass = NotificationFragment.class;
                 break;
             default:
                 fragmentClass = profile_edit.class;
