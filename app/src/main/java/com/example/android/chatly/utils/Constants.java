@@ -17,5 +17,4 @@ public class Constants {
     public static final String CHAT_VIDEOS = "chat_videos";
 
     public static final String CONTACT_PARCEL = "contact_parcel";
-    public static final String STICKER_API_KEY = "fccf83733ce4783985ce12ec937ff38a";
 }

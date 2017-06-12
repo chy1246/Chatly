@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.android.chatly.R;
+import com.example.android.chatly.User;
 import com.example.android.chatly.models.ContactEntry;
 import com.example.android.chatly.utils.Constants;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -33,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 public class ChatListFirebaseHandler implements UserContract.ChatListFirebaseHandler {
 
     DatabaseReference _chatListRef;
+    DatabaseReference _usersRef;
     FirebaseListAdapter<ContactEntry> _chatListAdapter;
     Activity _activity;
     // For test only
@@ -41,6 +43,7 @@ public class ChatListFirebaseHandler implements UserContract.ChatListFirebaseHan
 
     public ChatListFirebaseHandler() {
         this._chatListRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHATLISTS).child(_currentUserUID).getRef();
+        this._usersRef = FirebaseDatabase.getInstance().getReference().child(Constants.USERS).getRef();
     }
 
     @Override
@@ -53,10 +56,23 @@ public class ChatListFirebaseHandler implements UserContract.ChatListFirebaseHan
         this._chatListAdapter = new FirebaseListAdapter<ContactEntry>(activity, ContactEntry.class,
                 R.layout.chat_list_item, _chatListRef.orderByChild("_timestamp").limitToLast(10) ) {
             @Override
-            protected void populateView(View v, ContactEntry model, int position){
+            protected void populateView(View v,final ContactEntry model, int position){
 
-                TextView userNameText = (TextView) v.findViewById(R.id.chatListNameText);
-                userNameText.setText(model.get_displayName());
+                final TextView userNameText = (TextView) v.findViewById(R.id.chatListNameText);
+                //userNameText.setText(model.get_displayName());
+                _usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String contactName = dataSnapshot.child(model.get_contactUID()).getValue(User.class).getUserName();
+                        userNameText.setText(contactName);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
                 TextView latestMsgText = (TextView) v.findViewById(R.id.latestMessageText);
                 latestMsgText.setText(model.get_latestMsg());
@@ -102,6 +118,17 @@ public class ChatListFirebaseHandler implements UserContract.ChatListFirebaseHan
         if(msg != null) {
             _chatListRef.child(contactUID).child("_latestMsg").setValue(msg);
         }
+        _chatListRef.child(contactUID).child("_contactUID").setValue(contactUID);
         _chatListRef.child(contactUID).child("_timestamp").setValue(Long.MAX_VALUE - System.currentTimeMillis());
+
+        DatabaseReference chatListRef2 = FirebaseDatabase.getInstance().getReference().child(Constants.CHATLISTS).child(contactUID).getRef();
+
+        if(msg != null) {
+            chatListRef2.child(_currentUserUID).child("_latestMsg").setValue(msg);
+        }
+        chatListRef2.child(_currentUserUID).child("_contactUID").setValue(_currentUserUID);
+        chatListRef2.child(_currentUserUID).child("_timestamp").setValue(Long.MAX_VALUE - System.currentTimeMillis());
+
+
     }
 }

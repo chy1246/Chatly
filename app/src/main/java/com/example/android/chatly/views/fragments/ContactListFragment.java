@@ -64,11 +64,10 @@ public class ContactListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ContactEntry contact = (ContactEntry) parent.getItemAtPosition(position);
-                ChatFragment chatFragment = ChatFragment.newInstance(contact);
-
+                String contactUID = ((ContactEntry) parent.getItemAtPosition(position)).get_contactUID();
+                ContactDetailFragment contactDetailFragment = ContactDetailFragment.newInstance(contactUID);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.flContent, chatFragment);
+                ft.replace(R.id.flContent, contactDetailFragment);
                 ft.commit();
             }
         });

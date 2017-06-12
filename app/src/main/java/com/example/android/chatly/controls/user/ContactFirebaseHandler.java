@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.android.chatly.R;
+import com.example.android.chatly.User;
 import com.example.android.chatly.models.ContactEntry;
 import com.example.android.chatly.utils.Constants;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -33,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 public class ContactFirebaseHandler implements UserContract.ContactFirebaseHandler {
 
     DatabaseReference _contactRef;
+    DatabaseReference _usersRef;
     UserContract.ContactConsumer _consumer;
     FirebaseListAdapter<ContactEntry> _contactListAdapter;
 
@@ -44,6 +46,7 @@ public class ContactFirebaseHandler implements UserContract.ContactFirebaseHandl
     public ContactFirebaseHandler(@Nullable UserContract.ContactConsumer consumer) {
         this._consumer = consumer;
         _contactRef = FirebaseDatabase.getInstance().getReference().child(Constants.CONTACTS).child(_currentUserUID).getRef();
+        _usersRef = FirebaseDatabase.getInstance().getReference().child(Constants.USERS).getRef();
     }
 
     @Override
@@ -53,11 +56,22 @@ public class ContactFirebaseHandler implements UserContract.ContactFirebaseHandl
         _contactListAdapter = new FirebaseListAdapter<ContactEntry>(activity, ContactEntry.class,
                 R.layout.contact_list_item, _contactRef.orderByChild("_displayName")) {
             @Override
-            protected void populateView(View v, ContactEntry model, int position) {
+            protected void populateView(View v, final ContactEntry model, int position) {
 
                 //TODO: set layout here
-                TextView name = (TextView) v.findViewById(R.id.contactNameText);
-                name.setText(model.get_displayName());
+                final TextView name = (TextView) v.findViewById(R.id.contactNameText);
+                _usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String contactName = dataSnapshot.child(model.get_contactUID()).getValue(User.class).getUserName();
+                        name.setText(contactName);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 final ImageView contactImage = (ImageView) v.findViewById(R.id.contactPortraitImageView);
                 StorageReference userPortraitRef = FirebaseStorage.getInstance().getReference().child("Portrait");
@@ -100,8 +114,25 @@ public class ContactFirebaseHandler implements UserContract.ContactFirebaseHandl
     }
 
     @Override
-    public void addToContactList(ContactEntry entry) {
-        _contactRef.child(entry.get_contactUID()).setValue(entry);
+    public void addToContactList(final String contactUID) {
+        final DatabaseReference contactRef2 = FirebaseDatabase.getInstance().getReference().child(Constants.CONTACTS).child(contactUID);
+        _usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String displayName = dataSnapshot.child(contactUID).getValue(User.class).getUserName();
+                _contactRef.child(contactUID).child("_contactUID").setValue(contactUID);
+                _contactRef.child(contactUID).child("_displayName").setValue(displayName);
+
+                String dispplayName2 = dataSnapshot.child(_currentUserUID).getValue(User.class).getUserName();
+                contactRef2.child(_currentUserUID).child("_contactUID").setValue(_currentUserUID);
+                contactRef2.child(_currentUserUID).child("_displayName").setValue(dispplayName2);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

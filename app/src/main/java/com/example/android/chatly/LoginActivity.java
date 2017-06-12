@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
             }
         };
+        String emailFromSignup = getIntent().getStringExtra("emailFromSignup");
+        _emailText.setText(emailFromSignup);
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -305,6 +305,7 @@ public class ChatFirebaseHandler implements ChatContract.FirebaseHandler{
 
             }
         });
+
     }
 
 }

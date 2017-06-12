@@ -31,7 +31,7 @@ public interface UserContract {
 
     interface ContactFirebaseHandler{
         void setContactListAdapter(Activity activity, ListView listView);
-        void addToContactList(ContactEntry entry);
+        void addToContactList(String contactUID);
         void updateUserContactList(ContactEntry entry);
         void getContactFromFirebase(String userUID);
     }

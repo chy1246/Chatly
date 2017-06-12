@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.chatly.controls.user.ContactFirebaseHandler;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +26,7 @@ public class NotificationFragment extends Fragment {
 
     private DatabaseReference mDatabase;
     private FirebaseUser user;
+    private ContactFirebaseHandler _contactFirebaseHandler;
     public NotificationFragment() {
         // Required empty public constructor
     }
@@ -34,6 +36,7 @@ public class NotificationFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        _contactFirebaseHandler = new ContactFirebaseHandler(null);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,12 +94,17 @@ public class NotificationFragment extends Fragment {
                         //remove(notification);
                         mDatabase.child("Notification").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                         .child(notification.getFromID()).child("accepted").setValue(true);
+                        _contactFirebaseHandler.addToContactList(notification.getFromID());
+
+
                     }
                 });
 
                 reject.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mDatabase.child("Notification").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child(notification.getFromID()).child("accepted").setValue(true);
 
                     }
                 });

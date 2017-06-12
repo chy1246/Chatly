@@ -2,7 +2,7 @@
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:fitsSystemWindows="true"
-android:background="@drawable/profile">
+android:background="@drawable/login_bg">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,6 +13,7 @@ android:background="@drawable/profile">
 
     <ImageView
         android:id ="@+id/edit_portrait"
+        android:src="@drawable/black_user_shape"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_marginBottom="24dp"
@@ -23,7 +24,7 @@ android:background="@drawable/profile">
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:textColorHint="#00ffff">
+        android:textColorHint="#ffffff">
         <EditText android:id="@+id/profile_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +37,7 @@ android:background="@drawable/profile">
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:textColorHint="#00ffff">
+        android:textColorHint="#ffffff">
         <EditText android:id="@+id/profile_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +53,7 @@ android:background="@drawable/profile">
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:textColorHint="#00ffff">
+        android:textColorHint="#ffffff">
         <EditText android:id="@+id/profile_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

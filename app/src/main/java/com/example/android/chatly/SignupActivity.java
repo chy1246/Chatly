@@ -97,6 +97,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
+                Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
+                goToLogin.putExtra("emailFromSignup", _emailText.getText().toString());
+                startActivity(goToLogin);
+
                 finish();
             }
         });
@@ -235,6 +239,14 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent goToLogin = new Intent(this, LoginActivity.class);
+        goToLogin.putExtra("emailFromSignup", _emailText.getText().toString());
+        startActivity(goToLogin);
+
+        super.onBackPressed();
+    }
 
     /**
      private boolean validateForm() {

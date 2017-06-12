@@ -26,6 +26,8 @@ public class profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
+
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
@@ -40,9 +42,7 @@ public class profileActivity extends AppCompatActivity {
         });
          **/
 
-        /*StickersManager.initialize(Constants.STICKER_API_KEY, this.getApplicationContext());
-        StickersManager.setUserID(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        */
+       getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new ChatListFragment()).commit();
 
     }
     private void setupDrawerContent(NavigationView navigationView) {
@@ -73,8 +73,11 @@ public class profileActivity extends AppCompatActivity {
             case R.id.fourth_fragment:
                 fragmentClass = NotificationFragment.class;
                 break;
+            case R.id.fifth_fragment:
+                fragmentClass = ContactListFragment.class;
+                break;
             default:
-                fragmentClass = profile_edit.class;
+                fragmentClass = ChatListFragment.class;
         }
 
         try {

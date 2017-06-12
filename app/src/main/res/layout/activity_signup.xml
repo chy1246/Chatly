@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@drawable/login_bg">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +14,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src = "@drawable/wu"
+        <ImageView android:src = "@drawable/black_user_shape"
             android:id = "@+id/portrait"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
@@ -30,7 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Name" />
+                android:hint="Name"
+                android:textColorHint="#ffffff"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
@@ -43,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Email"
+                android:textColorHint="#ffffff"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -56,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:textColorHint="#ffffff"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->

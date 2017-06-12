@@ -66,6 +66,9 @@ public class ChatListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ContactEntry contact = (ContactEntry) parent.getItemAtPosition(position);
+                TextView name = (TextView) view.findViewById(R.id.chatListNameText);
+                contact.set_displayName(name.getText().toString());
+
                 ChatFragment chatFragment = ChatFragment.newInstance(contact);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
