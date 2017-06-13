@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -54,8 +55,13 @@ public class Search_friend extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild(userName)){
-                            String uid = (String)dataSnapshot.child(userName).getValue();
-                            getUserProfile(uid, userName);
+                            if(dataSnapshot.child(userName) != null) {
+                                String uid = (String) dataSnapshot.child(userName).getValue();
+                                getUserProfile(uid, userName);
+                            }else{
+                                System.out.println("No such a user");
+                                Toast.makeText(getContext(), "The user is not existed", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
 

@@ -79,13 +79,17 @@ public class Search_result extends Fragment {
                 mDatabase.child("users").getRef().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user1 =  dataSnapshot.child(user.getUid()).getValue(User.class);
-                        Notification addFriend = new Notification(false, user1.getUserName(), fromID);
-                        mDatabase.child("Notification").child(uid).child(fromID).setValue(addFriend);
-                        Toast.makeText(getContext(), "You have sent a request " + userName,
-                                Toast.LENGTH_LONG).show();
+                        if (user.getUid().equals(uid)) {
+                            Toast.makeText(getContext(), "You can not add yourself as a friend ",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            User user1 = dataSnapshot.child(user.getUid()).getValue(User.class);
+                            Notification addFriend = new Notification(false, user1.getUserName(), fromID);
+                            mDatabase.child("Notification").child(uid).child(fromID).setValue(addFriend);
+                            Toast.makeText(getContext(), "You have sent a request " + userName,
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -113,11 +117,11 @@ public class Search_result extends Fragment {
 
     public void getParameters(String userName1, String habits1, String gender1){
         if(userName1 != null)
-            userNameView.setText(userName1);
+            userNameView.setText("User Name: " + userName1);
         if(habits1 != null)
-            genderView.setText(gender1);
+            genderView.setText("Gender: " + gender1);
         if(gender1 != null)
-            habitView.setText(habits1);
+            habitView.setText("Habit: " + habits1);
     }
 
     public void download(String uid){
